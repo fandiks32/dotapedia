@@ -1,32 +1,27 @@
 class Dotapedia
   require "net/http"
   require "json"
+  require "active_record"
   require File.expand_path(File.dirname(__FILE__) + "/dota_object")
 
   def initialize(base_url: "https://api.opendota.com/api")
     @base_url = base_url
   end
 
-  def teams(query = {})
-    request = api_request('/teams')
-    json_data = request[:json]
-    struct_name = 'Team'
-    create_dota_object_struct(struct_name, json_data[0].keys)
-    result = create_struct(struct_name, json_data)
-    filter_struct(result, query)
-    result
+  method_names = [:teams, :pro_players, :pro_matches, :heroes]
+  method_names.each do |method_name|
+    define_method method_name do |query = {}|
+      endpoint = camelcase(method_name.to_s)
+      request = api_request("/#{endpoint}")
+      json_data = request[:json]
+      struct_name = method_name.to_s.singularize.camelize
+      create_dota_object_struct(struct_name, json_data[0].keys)
+      result = create_struct(struct_name, json_data)
+      filter_struct(result, query)
+      result
+    end
   end
-
-  def pro_players(query = {})
-    request = api_request('/proPlayers')
-    json_data = request[:json]
-    struct_name = 'ProPlayer'
-    create_dota_object_struct(struct_name, json_data[0].keys)
-    result = create_struct(struct_name, json_data)
-    filter_struct(result, query)
-    result
-  end
-
+  
   def request(url)
     api_request(url)
   end
@@ -83,5 +78,11 @@ class Dotapedia
     else
       data
     end
+  end
+  
+  def camelcase(string)
+    string = string.underscore.camelize
+    string[0] = string[0].downcase
+    string
   end
 end
