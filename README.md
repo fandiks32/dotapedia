@@ -37,9 +37,16 @@ Filtering
 ```ruby
     dotapedia.teams # return all teams
     dotapedia.teams(name: 'Team Liquid') # filter by name.
+    
     dotapedia.heroes # return all heroes
     dotapedia.heroes(name: 'axe') # filter by name.
     dotapedia.heroes(id: xxx) # filtered by hero id
+
+    dotapedia.pro_players #  return all pro player listed
+    dotapedia.pro_players(name: 'Miracle-') # filtered by pro players name
+
+    dotapedia.pro_matches #  return all pro matches
+    dotapedia.pro_matches(league_name: 'starladder') #  filtered by league name
 ```
 
 **Please read the OpenDota Api [Documentation](https://docs.opendota.com/) to get full list  of objects attributes.
