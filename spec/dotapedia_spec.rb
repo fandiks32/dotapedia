@@ -26,3 +26,23 @@ RSpec.describe Dotapedia, "#proPlayers" do
     expect(player.name).to eq 'Miracle-'
   end
 end
+
+RSpec.describe Dotapedia, "#proMatches" do
+  it "ProMatches is exist" do
+    dotapedia = Dotapedia.new
+    expect(dotapedia.pro_matches.size).to be > 0
+  end
+end
+
+RSpec.describe Dotapedia, "#heroes" do
+  it "Heroes is exist" do
+    dotapedia = Dotapedia.new
+    expect(dotapedia.heroes.size).to be > 0
+  end
+
+  it "Axe is existed" do
+    dotapedia = Dotapedia.new
+    player = dotapedia.heroes(localized_name: 'Anti-Mage', name: 'npc_dota_hero_antimage')[0]
+    expect(player.localized_name).to eq 'Anti-Mage'
+  end
+end
