@@ -8,7 +8,15 @@ class Dotapedia
     @base_url = base_url
   end
 
-  method_names = [:teams, :pro_players, :pro_matches, :heroes]
+  method_names = [
+    :teams,
+    :pro_players,
+    :pro_matches,
+    :heroes,
+    :distributions,
+    :live
+  ].freeze
+  
   method_names.each do |method_name|
     define_method method_name do |query = {}|
       endpoint = camelcase(method_name.to_s)

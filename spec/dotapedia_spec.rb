@@ -46,3 +46,17 @@ RSpec.describe Dotapedia, "#heroes" do
     expect(player.localized_name).to eq 'Anti-Mage'
   end
 end
+
+RSpec.describe Dotapedia, "#distributions" do
+  it "Distributions(MMR) is existed" do
+    dotapedia = Dotapedia.new
+    expect(dotapedia.heroes.size).to be > 0
+  end
+end
+
+RSpec.describe Dotapedia, "#live" do
+  it "live is exist" do
+    dotapedia = Dotapedia.new
+    expect(dotapedia.live.size).to be > 0
+  end
+end

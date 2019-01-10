@@ -47,6 +47,8 @@ Filtering
 
     dotapedia.pro_matches #  return all pro matches
     dotapedia.pro_matches(league_name: 'starladder') #  filtered by league name
+
+    dotapedia.live # Get top currently ongoing live games
 ```
 
 **Please read the OpenDota Api [Documentation](https://docs.opendota.com/) to get full list  of objects attributes.
