@@ -14,5 +14,13 @@ class DotapediaTest <  Test::Unit::TestCase
     all_pro_players = dotapedia.pro_players
     assert(all_pro_players.size > 0)
   end
+
+  #: TODO add test, pro_matches, heroes, distributions, live
+
+  test 'pro_players' do
+    d = Dotapedia.new
+    all_pro_players = d.pro_players
+    assert_not_empty(all_pro_players)
+  end
   
 end
